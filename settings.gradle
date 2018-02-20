@@ -1,0 +1,4 @@
+rootProject.name = 'FrequencyClassificationService'
+
+include ':FrequencyDisplay'
+project(':FrequencyDisplay').projectDir = new File(settingsDir, '../FrequencyDisplay')
