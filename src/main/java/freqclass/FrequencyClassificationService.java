@@ -5,6 +5,7 @@
  */
 package freqclass;
 
+import freqclass.rest.MessageWebSocket;
 import frequencydisplay.controller.DisplayController;
 import frequencydisplay.data.Platform;
 import frequencydisplay.model.AppModel;
@@ -23,6 +24,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import static spark.Spark.webSocket;
 
 
 
@@ -70,6 +72,9 @@ public class FrequencyClassificationService {
             public void searchParametersRemoved(SearchParameters searchParameters) {
             }
         });
+        
+        //WebSocket Handler, must be defined before other routes.
+        webSocket("/controls", MessageWebSocket.class);
         
         //RESTful request handler
         RequestHandler handler = new RequestHandler(model);
